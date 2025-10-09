@@ -133,7 +133,7 @@
         var px = getX(cx,ds,0.9);
         var py = getY(cy,ds,0.9);
         line(ctx,cx,cy,px,py,5, 'rgb(128, 100, 255)')
-    }
+        }
 
     // 残り秒数アナログ表示
     function analog(rest){
@@ -161,6 +161,7 @@
 
     // Alarmの処理
     function alarm(){
+
         var canvas = $("#mycanvas")[0];
         var ctx = canvas.getContext("2d");
         var img = new Image();
@@ -168,6 +169,9 @@
         img.onload = function() {
             ctx.drawImage(img, 0, 0, 300, 300);
         };
+        var audio = new Audio();
+        audio.src = "pin.wav";
+        audio.play();
     }
     
     // ButtonAがクリックされた時の処理
@@ -183,6 +187,7 @@
 
     // ButtonCがクリックされた時の処理
     function btnCClick(e){
+        alarm();
       
     }
     
@@ -191,10 +196,7 @@
     function timer(){  
         
 
- }
-        
-    } 
-
+    }
   </script>
 </head>
 <body>
