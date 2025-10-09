@@ -158,8 +158,8 @@
 
     // ボタンの初期設定
     function init(){
-        $('#btnA').prop('disabled', false);
-        $('#btnB').prop('disabled', false);
+        $('#btnA').prop('disabled', true);
+        $('#btnB').prop('disabled', true);
         $('#btnC').prop('disabled', false);
         
     }
@@ -183,6 +183,7 @@
     function btnAClick(e){
         active = true;
         startTime = new Date(); 
+        $('#btnB').prop('disabled', false);
     }
 
     // ButtonBがクリックされた時の処理
@@ -195,8 +196,10 @@
         alarm();
         active = false;
         period = 60* parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
-        $("#time").html("経過時間： 0");　
+        $("#time").html("経過時間： 0");
         $("#remain").html("残り時間： " + period);
+        $('#btnA').prop('disabled', false);
+        
     }
     
  
@@ -208,6 +211,10 @@
             $("#time").html("経過時間： " + etime);
             $("#remain").html("残り時間： " + rest);
             analog(rest);
+        }
+        if (rest <= 0) {
+            active = false;
+            alarm();
         }
 
  }
